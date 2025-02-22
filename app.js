@@ -1,9 +1,10 @@
-import  express from "express";
+import express from "express";
 import cookieParser from 'cookie-parser';
 
 import { PORT } from './config/env.js';
 
 import authRouter from "./routes/auth.routes.js";
+import productsRouter from "./routes/products.routes.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cookieParser());
 app.use(errorMiddleware);
 
 app.use("/auth", authRouter);
+app.use("/products", productsRouter);
 
 
 app.get("/", (req,res) => {
