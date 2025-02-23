@@ -1,4 +1,6 @@
 import {Router} from "express";
+import {createProduct} from "../controllers/products.controller.js";
+import categoryAndProductsMiddleware from "../middlewares/categoryAndProducts.middleware.js";
 
 const productsRouter = Router();
 
@@ -11,9 +13,7 @@ productsRouter.get("/:id", (req,res) => {
 	res.send("GET Single Product");
 });
 
-productsRouter.post("/", (req,res) => {
-	res.send("Create Product");
-});
+productsRouter.post("/create-product",categoryAndProductsMiddleware, createProduct);
 
 productsRouter.put("/:id", (req,res) => {
 	res.send("Update Product");

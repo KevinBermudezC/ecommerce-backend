@@ -22,6 +22,7 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   categoryId  Int
+  image       String?
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   carts       Cart[]
@@ -34,6 +35,7 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      String   @default("user") // user, admin
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

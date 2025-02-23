@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import { db } from "../utils/db";
-import { JWT_SECRET } from "../config/env";
+import { db } from "../utils/db.js";
+import { JWT_SECRET } from "../config/env.js";
 
 const authMiddleware = async (req, res, next) => {
 	try {

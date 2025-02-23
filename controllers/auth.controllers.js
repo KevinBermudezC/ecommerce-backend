@@ -4,6 +4,20 @@ import jwt from 'jsonwebtoken';
 
 import { JWT_SECRET, JWT_EXPIRES_IN } from '../config/env.js';
 
+/**
+ * Sign up a new user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The request body.
+ * @param {string} req.body.name - The name of the user.
+ * @param {string} req.body.email - The email of the user.
+ * @param {string} req.body.password - The password of the user.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Promise<void>} - A promise that resolves to void.
+ * @throws {Error} - Throws an error if the user already exists or if there is an issue creating the user.
+ */
+
 export const signUp = async (req, res, next) => {
 	try {
 		//create new user
@@ -35,7 +49,6 @@ export const signUp = async (req, res, next) => {
 
 		const token = jwt.sign({id: newUser.id}, JWT_SECRET, {expiresIn: JWT_EXPIRES_IN});
 	
-		
 		res.status(201).json({
 			success: true,
 			message: "User created successfully",
