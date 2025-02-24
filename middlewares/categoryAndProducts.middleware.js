@@ -15,6 +15,7 @@ const categoryAndProductsMiddleware = async (req, res, next) => {
         id: decoded.id,
       },
     });
+    
     console.log("Usuario encontrado:", user);
 
     if (!user || user.role !== "admin") {

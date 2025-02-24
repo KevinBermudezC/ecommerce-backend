@@ -1,26 +1,18 @@
 import {Router} from "express";
-import {createProduct} from "../controllers/products.controller.js";
+import {createProduct,getAllProducts,getSingleProduct,updateProduct,deleteProduct} from "../controllers/products.controller.js";
 import categoryAndProductsMiddleware from "../middlewares/categoryAndProducts.middleware.js";
 
 const productsRouter = Router();
 
 
-productsRouter.get("/", (req,res) => {
-	res.send("GET All Products ");
-});
+productsRouter.get("/", getAllProducts);
 
-productsRouter.get("/:id", (req,res) => {
-	res.send("GET Single Product");
-});
+productsRouter.get("/:id", getSingleProduct);
 
 productsRouter.post("/create-product",categoryAndProductsMiddleware, createProduct);
 
-productsRouter.put("/:id", (req,res) => {
-	res.send("Update Product");
-});
+productsRouter.put("/:id",categoryAndProductsMiddleware, updateProduct);
 
-productsRouter.delete("/:id", (req,res) => {
-	res.send("Delete Product");
-});
+productsRouter.delete("/:id",categoryAndProductsMiddleware,deleteProduct);
 
 export default productsRouter;
